@@ -67,7 +67,7 @@ class StoriesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_story
-      @story = current_user.stories.find(params[:id])
+      @story = Story.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
