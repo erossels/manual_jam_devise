@@ -23,6 +23,9 @@
               <li><%=link_to 'My PicStories', stories_path %></li>
               <li><%=link_to 'My Profile', edit_user_registration_path %></li>
               <li role="separator" class="divider"></li>
+              <% if current_user.admin  %>
+                <li><%= link_to 'Admin', home_admin_panel_path%></li>
+              <% end  %>
               <li><%= link_to 'Sign out', destroy_user_session_path, method: :delete %></li>
             <% else %>
               <li><%=link_to 'Sign in', new_user_registration_path %></li>
