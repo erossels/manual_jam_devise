@@ -1,5 +1,5 @@
 class HomeController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user!, only: [:admin_panel, :make_admin, :remove_admin]
 
   def index
     @stories = Story.all
