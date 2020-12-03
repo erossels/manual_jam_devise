@@ -1,5 +1,6 @@
 class StoriesController < ApplicationController
-  before_action :set_story, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!, only: [:new, :edit, :update, :destroy]
+  before_action :set_story, only: [:edit, :update, :destroy]
 
   # GET /stories
   # GET /stories.json
@@ -10,21 +11,23 @@ class StoriesController < ApplicationController
   # GET /stories/1
   # GET /stories/1.json
   def show
+    @story = Story.find(params[:id])
   end
 
   # GET /stories/new
   def new
-    @story = Story.new
+    @story = current_user.stories.new
   end
 
   # GET /stories/1/edit
   def edit
+    @story = Story.find(params[:id])
   end
 
   # POST /stories
   # POST /stories.json
   def create
-    @story = Story.new(story_params)
+    @story = current_user.stories.build(story_params)
 
     respond_to do |format|
       if @story.save
@@ -64,7 +67,7 @@ class StoriesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_story
-      @story = Story.find(params[:id])
+      @story = current_user.stories.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
