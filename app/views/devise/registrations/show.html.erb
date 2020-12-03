@@ -1,0 +1,15 @@
+<h1 class='py-5 my-5'>Your profile</h1>
+
+<div class='container'>
+  <br>
+</div>
+
+<div class="container my-5">
+  <div class="offset-4 col-md-5 container">
+      <p class='my-3'> Nombre de usuario: <%= @user.name %> </p>
+      <p class='my-3'> Correo de usuario: <%= @user.email %> <p>
+  </div>
+</div>
+
+<br>
+<%= link_to 'Edit', edit_user_registration_path, class:'btn btn-primary' %> 
